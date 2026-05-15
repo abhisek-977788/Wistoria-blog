@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm --prefix backend install",
+    "postinstall": "npm --prefix backend install --include=dev",
     "build": "npm --prefix backend run build",
     "start": "npm --prefix backend start"
   },
