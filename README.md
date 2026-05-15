@@ -1,5 +1,11 @@
 # Wistoria Blog Platform
 
+## Live Deployments
+
+- Frontend (Vercel): https://frontend-eta-flax-29.vercel.app
+- Backend (Render): https://wistoria-api.onrender.com
+- Backend health check: https://wistoria-api.onrender.com/api/v1/health
+
 Wistoria is a premium, full-stack, industry-ready blog platform built with Next.js 15, Node.js, Express, MongoDB, and Tailwind CSS. It features a modern, responsive design with dynamic animations, secure authentication, rich text editing, and an administrative dashboard.
 
 ## 🌟 Key Features
