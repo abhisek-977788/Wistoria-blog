@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: wistoria-api
+    name: wistoria-blog
     env: node
     plan: free
     region: ohio

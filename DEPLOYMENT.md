@@ -3,10 +3,10 @@
 ## Current Deployment URLs
 
 - Frontend (Vercel): https://frontend-eta-flax-29.vercel.app
-- Backend (Render): https://wistoria-api.onrender.com
-- Backend health check: https://wistoria-api.onrender.com/api/v1/health
+- Backend (Render): https://wistoria-blog.onrender.com
+- Backend health check: https://wistoria-blog.onrender.com/api/v1/health
 
-Note: the Vercel production deployment completed successfully. The Render URL above matches the service name in `backend/render.yaml`; verify the service slug in the Render dashboard if the health check returns `Not Found`.
+Note: the Vercel production deployment completed successfully. The Render URL above matches the active Render service URL shared for this project.
 
 ## Required Secrets
 

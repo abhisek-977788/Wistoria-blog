@@ -6,17 +6,28 @@ import commentRoutes from '../routes/comment.routes';
 import categoryRoutes from '../routes/category.routes';
 import adminRoutes from '../routes/admin.routes';
 import uploadRoutes from '../routes/upload.routes';
+import { getDBStatus } from './db';
 
 export const configureRoutes = (app: Application): void => {
   const API_PREFIX = '/api/v1';
 
-  // Health check
+  const healthPayload = () => ({
+    success: true,
+    message: 'Wistoria API is healthy',
+    database: getDBStatus(),
+    timestamp: new Date().toISOString(),
+  });
+
+  app.get('/', (_req, res) => {
+    res.json(healthPayload());
+  });
+
+  app.get('/health', (_req, res) => {
+    res.json(healthPayload());
+  });
+
   app.get(`${API_PREFIX}/health`, (_req, res) => {
-    res.json({
-      success: true,
-      message: 'Wistoria API is healthy 🚀',
-      timestamp: new Date().toISOString(),
-    });
+    res.json(healthPayload());
   });
 
   app.use(`${API_PREFIX}/auth`, authRoutes);

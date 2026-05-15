@@ -10,7 +10,7 @@ const app = express();
 const server = http.createServer(app);
 
 // Database
-connectDB();
+void connectDB();
 
 // Middleware
 configureMiddleware(app);
@@ -23,8 +23,8 @@ app.use(notFound);
 app.use(errorHandler);
 
 server.listen(env.PORT, () => {
-  console.log(`\n🚀 Wistoria API running on port ${env.PORT} [${env.NODE_ENV}]`);
-  console.log(`   → http://localhost:${env.PORT}/api/v1\n`);
+  console.log(`Wistoria API running on port ${env.PORT} [${env.NODE_ENV}]`);
+  console.log(`API: http://localhost:${env.PORT}/api/v1`);
 });
 
 export default app;
