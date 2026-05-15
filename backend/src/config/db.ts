@@ -10,6 +10,11 @@ export const getDBStatus = (): string => {
 };
 
 export const connectDB = async (): Promise<void> => {
+  if (!env.MONGODB_URI) {
+    console.warn('MONGODB_URI is not configured; skipping MongoDB connection');
+    return;
+  }
+
   try {
     const conn = await mongoose.connect(env.MONGODB_URI, {
       serverSelectionTimeoutMS: 5000,

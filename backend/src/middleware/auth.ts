@@ -22,6 +22,10 @@ export const protect = async (req: AuthRequest, _res: Response, next: NextFuncti
       return next(new AppError('Access denied. No token provided.', 401));
     }
 
+    if (!env.JWT_ACCESS_SECRET) {
+      return next(new AppError('JWT secret is not configured.', 503));
+    }
+
     const decoded = jwt.verify(token, env.JWT_ACCESS_SECRET) as { id: string };
     const user = await User.findById(decoded.id);
 
@@ -54,6 +58,7 @@ export const optionalAuth = async (req: AuthRequest, _res: Response, next: NextF
       token = req.cookies.accessToken;
     }
     if (token) {
+      if (!env.JWT_ACCESS_SECRET) return next();
       const decoded = jwt.verify(token, env.JWT_ACCESS_SECRET) as { id: string };
       const user = await User.findById(decoded.id);
       if (user) req.user = user;

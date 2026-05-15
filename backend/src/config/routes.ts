@@ -7,6 +7,7 @@ import categoryRoutes from '../routes/category.routes';
 import adminRoutes from '../routes/admin.routes';
 import uploadRoutes from '../routes/upload.routes';
 import { getDBStatus } from './db';
+import { getConfigStatus } from './env';
 
 export const configureRoutes = (app: Application): void => {
   const API_PREFIX = '/api/v1';
@@ -15,6 +16,7 @@ export const configureRoutes = (app: Application): void => {
     success: true,
     message: 'Wistoria API is healthy',
     database: getDBStatus(),
+    config: getConfigStatus(),
     timestamp: new Date().toISOString(),
   });
 

@@ -7,20 +7,28 @@ export interface TokenPayload {
   role: string;
 }
 
+const getJwtSecret = (secret: string | undefined): string => {
+  if (!secret) {
+    throw new Error('JWT secret is not configured');
+  }
+
+  return secret;
+};
+
 export const generateAccessToken = (payload: TokenPayload): string => {
-  return jwt.sign(payload, env.JWT_ACCESS_SECRET, {
+  return jwt.sign(payload, getJwtSecret(env.JWT_ACCESS_SECRET), {
     expiresIn: env.JWT_ACCESS_EXPIRES_IN as any,
   });
 };
 
 export const generateRefreshToken = (payload: TokenPayload): string => {
-  return jwt.sign(payload, env.JWT_REFRESH_SECRET, {
+  return jwt.sign(payload, getJwtSecret(env.JWT_REFRESH_SECRET), {
     expiresIn: env.JWT_REFRESH_EXPIRES_IN as any,
   });
 };
 
 export const verifyRefreshToken = (token: string): TokenPayload => {
-  return jwt.verify(token, env.JWT_REFRESH_SECRET) as TokenPayload;
+  return jwt.verify(token, getJwtSecret(env.JWT_REFRESH_SECRET)) as TokenPayload;
 };
 
 export const setCookies = (res: Response, accessToken: string, refreshToken: string): void => {
